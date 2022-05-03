@@ -1,0 +1,602 @@
+---
+title: "East"
+author: "Yuxi Duan"
+date: '2022-04-10'
+output: pdf_document
+---
+
+```{r}
+Land<-read.csv("AdoptAPixel3km2020_GO_LandCover.csv")
+```
+
+```{r}
+#choose the column which are named "null"
+deleast<-which(Land$landcoversEastClassifications=="null")
+#delete them and save
+Land<-Land[-deleast,]
+
+delwest<-which(Land$landcoversWestClassifications=="null")
+Land<-Land[-delwest,]
+
+delnorth<-which(Land$landcoversNorthClassifications=="null")
+Land<-Land[-delnorth,]
+
+delsouth<-which(Land$landcoversSouthClassifications=="null")
+Land<-Land[-delsouth,]
+
+#so that there are 372 obs with 35variables
+```
+
+
+## East
+```{r}
+library(dplyr)
+library(MASS)
+library(tidyr)
+library(stringr)
+str_count(Land$landcoversEastClassifications,";") %>%
+  max()
+#separate landcoversEastClassification column into 8 new columns
+east.sep<-separate(Land, col=landcoversEastClassifications, into=c('East1', 'East2', 'East3','East4', 'East5', 'East6','East7','East8'), sep=';')
+```
+
+```{r}
+#east.most.MUC0
+#str_view(east.sep$`the most`, "MUC 0", match = TRUE)
+east.sep %>%
+  filter(str_detect(East1,"MUC 0")) %>%
+  dplyr:: select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 1")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 2")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 3")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 4")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 5")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 6")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 7")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 8")) %>%
+   dplyr::select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 9")) %>%
+   dplyr::select(East1)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East2,"MUC 0")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 1")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 2")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 3")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 4")) %>%
+  dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 5")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 6")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 7")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 8")) %>%
+   dplyr::select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 9")) %>%
+   dplyr::select(East2)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East3,"MUC 0")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 1")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 2")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 3")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 4")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 5")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 6")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 7")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 8")) %>%
+   dplyr::select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 9")) %>%
+   dplyr::select(East3)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East4,"MUC 0")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 1")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 2")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 3")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 4")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 5")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 6")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 7")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 8")) %>%
+   dplyr::select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 9")) %>%
+   dplyr::select(East4)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East5,"MUC 0")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 1")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 2")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 3")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 4")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 5")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 6")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 7")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 8")) %>%
+   dplyr::select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 9")) %>%
+   dplyr::select(East5)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East6,"MUC 0")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 1")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 2")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 3")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 4")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 5")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 6")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 7")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 8")) %>%
+   dplyr::select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 9")) %>%
+   dplyr::select(East6)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East7,"MUC 0")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 1")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 2")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 3")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 4")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 5")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 6")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 7")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 8")) %>%
+   dplyr::select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 9")) %>%
+   dplyr::select(East7)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East8,"MUC 0")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 1")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 2")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 3")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 4")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 5")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 6")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 7")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 8")) %>%
+   dplyr::select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 9")) %>%
+   dplyr::select(East8)
+```
+
+```{r}
+east.sepcl <- east.sep %>%
+   dplyr::select(-landcoversLandCoverId,-landcoversDataSource,-landcoversMeasuredAt,-siteName,-landcoversMeasurementLatitude,-landcoversMeasurementLongitude,-elevation,-landcoversMeasurementElevation,-landcoversMucCode,-landcoversMucDetails,-landcoversMucDescription,-landcoversDownwardExtraData,-landcoversDownwardPhotoUrl,-landcoversDryGround,-landcoversEastExtraData,-landcoversFieldNotes,-landcoversLeavesOnTrees,-landcoversMuddy,-landcoversNorthExtraData,-landcoversRainingSnowing,-landcoversSnowIce,-landcoversSouthExtraData,-landcoversStandingWater,-landcoversUpwardExtraData,-landcoversUpwardPhotoUrl,-landcoversWestExtraData)
+onlyeast <-east.sepcl %>%
+   dplyr::select(East1,East2,East3,East4,East5,East6,East7,East8,landcoversEastPhotoUrl)
+```
+
+```{r}
+onlyeast<-onlyeast %>%
+  pivot_longer(-landcoversEastPhotoUrl,names_to = "East", values_to = "classification_detail")
+
+onlyeast<-onlyeast%>%
+  group_by(landcoversEastPhotoUrl)
+```
+
+```{r}
+
+onlyeast<-onlyeast%>%
+  mutate(classification_detail=str_replace_all(classification_detail," ",""))
+```
+
+```{r}
+onlyeast<-onlyeast %>%
+   mutate(percentage = str_extract_all(classification_detail,"[0-9]+%")) %>%
+  group_by(landcoversEastPhotoUrl)%>%
+    mutate(percentage=str_replace_all(percentage,"%",""))%>%
+  group_by(landcoversEastPhotoUrl)
+
+onlyeast$percentage<-as.numeric(onlyeast$percentage)
+class(onlyeast$percentage)
+```
+
+```{r}
+east_desc<-onlyeast %>%
+            group_by(landcoversEastPhotoUrl) %>%
+    arrange(desc(percentage))%>%
+  slice(1)
+```
+
+```{r}
+east_desc<-east_desc %>%
+   mutate(muc_code = str_extract_all(classification_detail,"MUC[0-9]")) %>%
+  group_by(landcoversEastPhotoUrl)%>%
+      mutate(muc_code=str_replace_all(muc_code,"MUC",""))%>%
+  group_by(landcoversEastPhotoUrl)
+
+
+east_desc$muc_code<-as.character(east_desc$muc_code)
+class(east_desc$muc_code)
+
+```
+
+```{r}
+east_desc<-east_desc %>%
+   dplyr::select(landcoversEastPhotoUrl, percentage, muc_code)
+#edimnames(wts)=list(row,column)ast_desc<-east_desc %>%
+#  mutate(landcoversEastPhotoUrl=str_replace_all(landcoversEastPhotoUrl,"original","thumb"))
+east_desc<-east_desc %>%
+   dplyr::select(landcoversEastPhotoUrl, percentage, muc_code)
+```
+
+
+
+```{r}
+library(tidyverse)
+library(keras)
+library(tensorflow)
+library(reticulate)
+library(urltools)
+```
+
+
+
+```{r message=FALSE}
+library(rvest)
+library(downloader)
+library(stringr)
+library(dplyr)
+getwd()
+setwd("~/AU/DATA-793/project/land_cover")
+
+east_desc<-east_desc[-369, ]
+east_desc<-east_desc[-369, ]
+
+#dir.create("~/AU/DATA-793/project/land_cover/pictures") 
+#for(i in 1:length(east_desc$landcoversEastPhotoUrl)) 
+#{
+# download(east_desc$landcoversEastPhotoUrl[i],
+#          paste("~/AU/DATA-793/project/land_cover/pictures",i,".jpg",sep = ""), mode = "wb")
+#}  
+
+```
+
+```{r}
+library(imager)
+require(readxl)
+require(tidyverse)
+require(data.table)
+pictures<-list.files(path = "~/AU/DATA-793/project/land_cover/pictures", pattern = "*.jpg", full.names = TRUE)
+all_im<-lapply(pictures, load.image)
+require(knitr)
+#include_graphics(folder)
+class(all_im)
+```
+
+
+
+```{r}
+library(keras)
+
+class_names <- c('MUC 0', 'MUC 1', 'MUC 2', 'MUC 3', 'MUC 4',
+                 'MUC 5', 'MUC 6', 'MUC 7', 'MUC 8', 'MUC 9')
+#dir.create("~/AU/DATA-793/project/land_cover/pictures/train") 
+#dir.create("~/AU/DATA-793/project/land_cover/pictures/test") 
+```
+
+```{r}
+# number of output classes (i.e. fruits)
+output_n <- length(class_names)
+output_n
+```
+
+```{r}
+# image size to scale down to 20*20
+img_width<- 20
+img_height <- 20
+target_size <- c(img_width, img_height)
+```
+
+```{r}
+# RGB = 3 channels
+channels <- 3
+```
+
+```{r}
+# path to image folders
+train_image_files_path <- "~/AU/DATA-793/project/land_cover/pictures/train"
+valid_image_files_path <- "~/AU/DATA-793/project/land_cover/pictures/test"
+# optional data augmentation
+train_data_gen = image_data_generator(
+  rescale = 1/255,
+  rotation_range = 40,
+  width_shift_range = 0.2,
+  height_shift_range = 0.2,
+  shear_range = 0.2,
+  zoom_range = 0.2,
+  horizontal_flip = TRUE,
+  fill_mode = "nearest")
+
+# Validation data shouldn't be augmented! But it should also be scaled.
+valid_data_gen <- image_data_generator(
+  rescale = 1/255)  
+
+
+```
+
+```{r}
+# training images
+train_image_array_gen <- flow_images_from_directory(train_image_files_path, 
+                                                    train_data_gen,
+                                                    target_size = target_size,
+                                                    class_mode = 'categorical',
+                                                    color_mode = "rgb",
+                                                    classes = class_names,
+                                                    seed = 42)
+
+# validation images
+valid_image_array_gen <- flow_images_from_directory(valid_image_files_path, 
+                                                    valid_data_gen,
+                                                    target_size = target_size,
+                                                    class_mode = 'categorical',
+                                                    classes = class_names,
+                                                    seed = 42)
+```
+
+```{r}
+# model definition
+# number of training samples
+train_samples <- train_image_array_gen$n
+train_samples
+# number of validation samples
+valid_samples <- valid_image_array_gen$n
+valid_samples
+# define batch size and number of epochs
+batch_size <- 32
+epochs <- 10
+
+# initialise model
+model <- keras_model_sequential()
+
+# add layers
+model %>% 
+  layer_conv_2d(filter = 32, kernel_size = c(3,3), padding = 'same', input_shape = c(img_width, img_height, channels)) %>%
+  layer_activation('relu') %>%
+  
+  # Second hidden layer
+  layer_conv_2d(filter = 16, kernel_size = c(3,3), padding = 'same') %>%
+  layer_activation_leaky_relu(0.5) %>%
+  layer_batch_normalization() %>%
+  
+  # Use max pooling
+  layer_max_pooling_2d(pool_size = c(2,2)) %>%
+  layer_dropout(0.25) %>%
+  
+  # Flatten max filtered output into feature vector 
+  # and feed into dense layer
+  layer_flatten() %>%
+  layer_dense(100) %>%
+  layer_activation('relu') %>%
+  layer_dropout(0.5) %>%
+  
+  # Outputs from dense layer are projected onto output layer
+  layer_dense(output_n) %>% 
+  layer_activation('softmax')
+
+# compile
+model %>% compile(
+  loss = 'categorical_crossentropy',
+  optimizer = optimizer_rmsprop(lr = 0.0001, decay = 1e-6),
+  metrics = 'accuracy'
+)
+# fit
+#hist <- fit_generator(
+  # training data
+#  train_image_array_gen,
+  
+  # epochs
+# steps_per_epoch = as.integer(train_samples / batch_size), 
+# epochs = epochs,
+  
+  # validation data
+#  validation_data = valid_image_array_gen,
+#  validation_steps = as.integer(valid_samples / batch_size),
+  
+  # print progress
+#  verbose = 2,
+#  callbacks = list(
+    # save best model after every epoch
+#    callback_model_checkpoint(file.path(path, "class_checkpoints.h5"), save_best_only = TRUE),
+    # only needed for visualising with TensorBoard
+#    callback_tensorboard(log_dir = file.path(path, "class_logs"))
+#  )
+#)
+
+#df_out <- hist$metrics %>% 
+#  {data.frame(acc = .$acc[epochs], val_acc = .$val_acc[epochs], elapsed_time = as.integer(Sys.time()) - #as.integer(start))}
+```
+
+
+
+
+```{r}
+#First, let's look at how images are represented in R. For the purpose of this week's report, i will only work with grayscale images, so we will not worry about different color channels. An image is then simply a grid of pixels whose grayscale values can be stored as integers in a regular matrix.  
+
+# let's look at the following 10 by 10 matrix which represents a 10 by 10 pixel image. 
+image_matrix<- matrix(0,ncol = 10, nrow = 10)
+image_matrix[2,]<-255
+image_matrix[,2]<-255
+image_matrix[9,]<-255
+image_matrix[,9]<-255
+image_matrix
+# So we have an all zero matrix except for two rows and two columns that are non-zero. 
+image(x = 1:10, y = 1:10, z = image_matrix, col = gray.colors(100))
+# we can plot this matrix in r via the built-in image function. this function will treat each number as the light intensity for that given pixel where higher values represent more light. this is how we can think of an image simply as a numeric matrix which can be used in statistical analyses to simplify our work further we can convert the matrix into a vector. 
+
+#let's look at a slightly more complex image to load it in r and extract tge underlying data matrix.
+# we will use the magick library, we can now load the image 
+library(magick)
+img1<-image_read("~/AU/DATA-793/project/land_cover/pictures/pictures1.jpg")
+img1 # and r tells us that this file is 64 pixels in width and 64 pixels in height 
+
+# we can then extract the vector of numbers that encodes this image.
+img1_data<-as.numeric(img1[[1]][1, , ])
+img1_data[1:20]
+length(img1_data)
+64*64
+```
+
+```{r}
+# since we now have access to this data vector we have full control over the image and can make any changes we wish to the pixels
+# the magick library also has some built-in image processing functions
+
+# we can create a negative 
+image_negate(img1)
+
+# or change the orientation of this image 
+img1%>%
+  image_flop
+img1%>%
+  image_convert(colorspace='gray') 
+```
+
+
+

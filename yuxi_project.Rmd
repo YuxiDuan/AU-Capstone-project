@@ -1,0 +1,1357 @@
+---
+title: "land_cover"
+author: "Yuxi Duan"
+date: "1/30/2022"
+output: pdf_document
+---
+
+# read data
+
+```{r}
+#Labels<-read.csv("AdoptAPixel3km2020_100m_aerialImageryLabels.csv")
+Land<-read.csv("AdoptAPixel3km2020_GO_LandCover.csv")
+#Mapper<-read.csv("AdoptAPixel3km2020_GO_MosquitoHabitatMapper.csv")
+```
+
+
+# clean the data
+```{r}
+#choose the column which are named "null"
+deleast<-which(Land$landcoversEastClassifications=="null")
+#delete them and save
+Land<-Land[-deleast,]
+
+delwest<-which(Land$landcoversWestClassifications=="null")
+Land<-Land[-delwest,]
+
+delnorth<-which(Land$landcoversNorthClassifications=="null")
+Land<-Land[-delnorth,]
+
+delsouth<-which(Land$landcoversSouthClassifications=="null")
+Land<-Land[-delsouth,]
+
+#so that there are 372 obs with 35variables
+```
+
+
+## East
+```{r}
+library(dplyr)
+library(tidyr)
+library(stringr)
+str_count(Land$landcoversEastClassifications,";") %>%
+  max()
+#separate landcoversEastClassification column into three new columns
+east.sep<-separate(Land, col=landcoversEastClassifications, into=c('East1', 'East2', 'East3','East4', 'East5', 'East6','East7','East8'), sep=';')
+```
+
+```{r}
+#east.most.MUC0
+#str_view(east.sep$`the most`, "MUC 0", match = TRUE)
+east.sep %>%
+  filter(str_detect(East1,"MUC 0")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 1")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 2")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 3")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 4")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 5")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 6")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 7")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 8")) %>%
+  select(East1)
+east.sep %>%
+  filter(str_detect(East1,"MUC 9")) %>%
+  select(East1)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East2,"MUC 0")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 1")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 2")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 3")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 4")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 5")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 6")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 7")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 8")) %>%
+  select(East2)
+east.sep %>%
+  filter(str_detect(East2,"MUC 9")) %>%
+  select(East2)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East3,"MUC 0")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 1")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 2")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 3")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 4")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 5")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 6")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 7")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 8")) %>%
+  select(East3)
+east.sep %>%
+  filter(str_detect(East3,"MUC 9")) %>%
+  select(East3)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East4,"MUC 0")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 1")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 2")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 3")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 4")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 5")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 6")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 7")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 8")) %>%
+  select(East4)
+east.sep %>%
+  filter(str_detect(East4,"MUC 9")) %>%
+  select(East4)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East5,"MUC 0")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 1")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 2")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 3")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 4")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 5")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 6")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 7")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 8")) %>%
+  select(East5)
+east.sep %>%
+  filter(str_detect(East5,"MUC 9")) %>%
+  select(East5)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East6,"MUC 0")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 1")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 2")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 3")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 4")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 5")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 6")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 7")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 8")) %>%
+  select(East6)
+east.sep %>%
+  filter(str_detect(East6,"MUC 9")) %>%
+  select(East6)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East7,"MUC 0")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 1")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 2")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 3")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 4")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 5")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 6")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 7")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 8")) %>%
+  select(East7)
+east.sep %>%
+  filter(str_detect(East7,"MUC 9")) %>%
+  select(East7)
+```
+
+```{r}
+east.sep %>%
+  filter(str_detect(East8,"MUC 0")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 1")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 2")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 3")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 4")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 5")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 6")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 7")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 8")) %>%
+  select(East8)
+east.sep %>%
+  filter(str_detect(East8,"MUC 9")) %>%
+  select(East8)
+```
+
+
+```{r}
+east.sepcl <- east.sep %>%
+  select(-landcoversLandCoverId,-landcoversDataSource,-landcoversMeasuredAt,-siteName,-landcoversMeasurementLatitude,-landcoversMeasurementLongitude,-elevation,-landcoversMeasurementElevation,-landcoversMucCode,-landcoversMucDetails,-landcoversMucDescription,-landcoversDownwardExtraData,-landcoversDownwardPhotoUrl,-landcoversDryGround,-landcoversEastExtraData,-landcoversFieldNotes,-landcoversLeavesOnTrees,-landcoversMuddy,-landcoversNorthExtraData,-landcoversRainingSnowing,-landcoversSnowIce,-landcoversSouthExtraData,-landcoversStandingWater,-landcoversUpwardExtraData,-landcoversUpwardPhotoUrl,-landcoversWestExtraData)
+onlyeast <-east.sepcl %>%
+  select(East1,East2,East3,East4,East5,East6,East7,East8,landcoversEastPhotoUrl)
+```
+
+```{r}
+onlyeast<-onlyeast %>%
+  pivot_longer(-landcoversEastPhotoUrl,names_to = "East", values_to = "classification_detail")
+
+onlyeast<-onlyeast%>%
+  group_by(landcoversEastPhotoUrl)
+```
+
+```{r}
+
+onlyeast<-onlyeast%>%
+  mutate(classification_detail=str_replace_all(classification_detail," ",""))
+```
+
+```{r}
+onlyeast<-onlyeast %>%
+   mutate(percentage = str_extract_all(classification_detail,"[0-9]+%")) %>%
+  group_by(landcoversEastPhotoUrl)%>%
+    mutate(percentage=str_replace_all(percentage,"%",""))%>%
+  group_by(landcoversEastPhotoUrl)
+
+onlyeast$percentage<-as.numeric(onlyeast$percentage)
+class(onlyeast$percentage)
+```
+
+```{r}
+east_desc<-onlyeast %>%
+            group_by(landcoversEastPhotoUrl) %>%
+    arrange(desc(percentage))%>%
+  slice(1)
+```
+
+```{r}
+east_desc<-east_desc %>%
+   mutate(muc_code = str_extract_all(classification_detail,"MUC[0-9]")) %>%
+  group_by(landcoversEastPhotoUrl)%>%
+      mutate(muc_code=str_replace_all(muc_code,"MUC",""))%>%
+  group_by(landcoversEastPhotoUrl)
+
+east_desc$muc_code<-as.character(east_desc$muc_code)
+class(east_desc$muc_code)
+
+```
+
+```{r}
+east_desc<-east_desc %>%
+  select(landcoversEastPhotoUrl, percentage, muc_code)
+east_desc<-east_desc %>%
+  mutate(landcoversEastPhotoUrl=str_replace_all(landcoversEastPhotoUrl,"original","thumb"))
+east_desc<-east_desc %>%
+  select(landcoversEastPhotoUrl, percentage, muc_code)
+```
+
+
+## West
+```{r}
+str_count(Land$landcoversWestClassifications,";") %>%
+  max()
+```
+
+```{r}
+#separate landcoversWestClassification column into three new columns
+west.sep<-separate(Land, col=landcoversWestClassifications, into=c('West1', 'West2', 'West3','West4', 'West5', 'West6','West7'), sep=';')
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West1,"MUC 0")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 1")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 2")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 3")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 4")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 5")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 6")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 7")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 8")) %>%
+  select(West1)
+west.sep %>%
+  filter(str_detect(West1,"MUC 9")) %>%
+  select(West1)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West2,"MUC 0")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 1")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 2")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 3")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 4")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 5")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 6")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 7")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 8")) %>%
+  select(West2)
+west.sep %>%
+  filter(str_detect(West2,"MUC 9")) %>%
+  select(West2)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West3,"MUC 0")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 1")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 2")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 3")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 4")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 5")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 6")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 7")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 8")) %>%
+  select(West3)
+west.sep %>%
+  filter(str_detect(West3,"MUC 9")) %>%
+  select(West3)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West4,"MUC 0")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 1")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 2")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 3")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 4")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 5")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 6")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 7")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 8")) %>%
+  select(West4)
+west.sep %>%
+  filter(str_detect(West4,"MUC 9")) %>%
+  select(West4)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West5,"MUC 0")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 1")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 2")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 3")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 4")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 5")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 6")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 7")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 8")) %>%
+  select(West5)
+west.sep %>%
+  filter(str_detect(West5,"MUC 9")) %>%
+  select(West5)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West6,"MUC 0")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 1")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 2")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 3")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 4")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 5")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 6")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 7")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 8")) %>%
+  select(West6)
+west.sep %>%
+  filter(str_detect(West6,"MUC 9")) %>%
+  select(West6)
+```
+
+```{r}
+west.sep %>%
+  filter(str_detect(West7,"MUC 0")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 1")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 2")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 3")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 4")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 5")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 6")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 7")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 8")) %>%
+  select(West7)
+west.sep %>%
+  filter(str_detect(West7,"MUC 9")) %>%
+  select(West7)
+```
+
+```{r}
+west.sepcl <- west.sep %>%
+  select(-landcoversLandCoverId,-landcoversDataSource,-landcoversMeasuredAt,-siteName,-landcoversMeasurementLatitude,-landcoversMeasurementLongitude,-elevation,-landcoversMeasurementElevation,-landcoversMucCode,-landcoversMucDetails,-landcoversMucDescription,-landcoversDownwardExtraData,-landcoversDownwardPhotoUrl,-landcoversDryGround,-landcoversEastExtraData,-landcoversFieldNotes,-landcoversLeavesOnTrees,-landcoversMuddy,-landcoversNorthExtraData,-landcoversRainingSnowing,-landcoversSnowIce,-landcoversSouthExtraData,-landcoversStandingWater,-landcoversUpwardExtraData,-landcoversUpwardPhotoUrl,-landcoversWestExtraData)
+onlywest <- west.sepcl %>%
+  select(West1,West2,West3,West4,West5,West6,West7,landcoversWestPhotoUrl)
+```
+
+```{r}
+
+onlywest<-onlywest %>%
+  pivot_longer(-landcoversWestPhotoUrl,names_to = "West", values_to = "classification_detail")
+
+onlywest<-onlywest%>%
+  group_by(landcoversWestPhotoUrl)
+```
+
+```{r}
+
+onlywest<-onlywest %>%
+  mutate(classification_detail=str_replace_all(classification_detail," ",""))
+```
+
+```{r}
+
+onlywest<-onlywest %>%
+   mutate(percentage = str_extract_all(classification_detail,"[0-9]+%")) %>%
+  group_by(landcoversWestPhotoUrl)%>%
+    mutate(percentage=str_replace_all(percentage,"%",""))%>%
+  group_by(landcoversWestPhotoUrl)
+
+onlywest$percentage<-as.numeric(onlywest$percentage)
+class(onlywest$percentage)
+```
+
+```{r}
+west_desc<-onlywest %>%
+            group_by(landcoversWestPhotoUrl) %>%
+    arrange(desc(percentage))%>%
+  slice(1)
+```
+
+```{r}
+
+west_desc<-west_desc %>%
+   mutate(muc_code = str_extract_all(classification_detail,"MUC[0-9]")) %>%
+  group_by(landcoversWestPhotoUrl)%>%
+      mutate(muc_code=str_replace_all(muc_code,"MUC",""))%>%
+  group_by(landcoversWestPhotoUrl)
+
+west_desc$muc_code<-as.character(west_desc$muc_code)
+class(west_desc$muc_code)
+```
+
+## North
+```{r}
+str_count(Land$landcoversNorthClassifications,";") %>%
+  max()
+```
+
+```{r}
+#separate landcoversWestClassification column into three new columns
+north.sep<-separate(Land, col=landcoversNorthClassifications, into=c('North1', 'North2', 'North3','North4', 'North5', 'North6','North7', 'North8'), sep=';')
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North1,"MUC 0")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 1")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 2")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 3")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 4")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 5")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 6")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 7")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 8")) %>%
+  select(North1)
+north.sep %>%
+  filter(str_detect(North1,"MUC 9")) %>%
+  select(North1)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North2,"MUC 0")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 1")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 2")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 3")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 4")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 5")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 6")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 7")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 8")) %>%
+  select(North2)
+north.sep %>%
+  filter(str_detect(North2,"MUC 9")) %>%
+  select(North2)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North3,"MUC 0")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 1")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 2")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 3")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 4")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 5")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 6")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 7")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 8")) %>%
+  select(North3)
+north.sep %>%
+  filter(str_detect(North3,"MUC 9")) %>%
+  select(North3)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North4,"MUC 0")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 1")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 2")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 3")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 4")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 5")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 6")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 7")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 8")) %>%
+  select(North4)
+north.sep %>%
+  filter(str_detect(North4,"MUC 9")) %>%
+  select(North4)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North5,"MUC 0")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 1")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 2")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 3")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 4")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 5")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 6")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 7")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 8")) %>%
+  select(North5)
+north.sep %>%
+  filter(str_detect(North5,"MUC 9")) %>%
+  select(North5)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North6,"MUC 0")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 1")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 2")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 3")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 4")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 5")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 6")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 7")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 8")) %>%
+  select(North6)
+north.sep %>%
+  filter(str_detect(North6,"MUC 9")) %>%
+  select(North6)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North7,"MUC 0")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 1")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 2")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 3")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 4")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 5")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 6")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 7")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 8")) %>%
+  select(North7)
+north.sep %>%
+  filter(str_detect(North7,"MUC 9")) %>%
+  select(North7)
+```
+
+```{r}
+north.sep %>%
+  filter(str_detect(North8,"MUC 0")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 1")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 2")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 3")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 4")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 5")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 6")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 7")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 8")) %>%
+  select(North8)
+north.sep %>%
+  filter(str_detect(North8,"MUC 9")) %>%
+  select(North8)
+```
+
+```{r}
+north.sepcl <- north.sep %>%
+  select(-landcoversLandCoverId,-landcoversDataSource,-landcoversMeasuredAt,-siteName,-landcoversMeasurementLatitude,-landcoversMeasurementLongitude,-elevation,-landcoversMeasurementElevation,-landcoversMucCode,-landcoversMucDetails,-landcoversMucDescription,-landcoversDownwardExtraData,-landcoversDownwardPhotoUrl,-landcoversDryGround,-landcoversEastExtraData,-landcoversFieldNotes,-landcoversLeavesOnTrees,-landcoversMuddy,-landcoversNorthExtraData,-landcoversRainingSnowing,-landcoversSnowIce,-landcoversSouthExtraData,-landcoversStandingWater,-landcoversUpwardExtraData,-landcoversUpwardPhotoUrl,-landcoversWestExtraData)
+onlynorth <- north.sepcl %>%
+  select(North1,North2,North3,North4,North5,North6,North7,North8,landcoversNorthPhotoUrl)
+```
+
+```{r}
+
+onlynorth<-onlynorth %>%
+  pivot_longer(-landcoversNorthPhotoUrl,names_to = "North", values_to = "classification_detail")
+
+onlynorth<-onlynorth%>%
+  group_by(landcoversNorthPhotoUrl)
+```
+
+```{r}
+
+onlynorth<-onlynorth %>%
+  mutate(classification_detail=str_replace_all(classification_detail," ",""))
+```
+
+```{r}
+
+onlynorth<-onlynorth %>%
+   mutate(percentage = str_extract_all(classification_detail,"[0-9]+%")) %>%
+  group_by(landcoversNorthPhotoUrl)%>%
+    mutate(percentage=str_replace_all(percentage,"%",""))%>%
+  group_by(landcoversNorthPhotoUrl)
+
+onlynorth$percentage<-as.numeric(onlynorth$percentage)
+class(onlynorth$percentage)
+```
+
+```{r}
+north_desc<-onlynorth %>%
+            group_by(landcoversNorthPhotoUrl) %>%
+    arrange(desc(percentage))%>%
+  slice(1)
+```
+
+```{r}
+
+north_desc<-north_desc %>%
+   mutate(muc_code = str_extract_all(classification_detail,"MUC[0-9]")) %>%
+  group_by(landcoversNorthPhotoUrl)%>%
+      mutate(muc_code=str_replace_all(muc_code,"MUC",""))%>%
+  group_by(landcoversNorthPhotoUrl)
+
+north_desc$muc_code<-as.character(north_desc$muc_code)
+class(north_desc$muc_code)
+```
+
+## South
+```{r}
+str_count(Land$landcoversSouthClassifications,";") %>%
+  max()
+```
+
+```{r}
+#separate landcoversWestClassification column into three new columns
+south.sep<-separate(Land, col=landcoversSouthClassifications, into=c('South1', 'South2', 'South3','South4', 'South5', 'South6','South7', 'South8'), sep=';')
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South1,"MUC 0")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 1")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 2")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 3")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 4")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 5")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 6")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 7")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 8")) %>%
+  select(South1)
+south.sep %>%
+  filter(str_detect(South1,"MUC 9")) %>%
+  select(South1)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South2,"MUC 0")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 1")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 2")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 3")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 4")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 5")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 6")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 7")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 8")) %>%
+  select(South2)
+south.sep %>%
+  filter(str_detect(South2,"MUC 9")) %>%
+  select(South2)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South3,"MUC 0")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 1")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 2")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 3")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 4")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 5")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 6")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 7")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 8")) %>%
+  select(South3)
+south.sep %>%
+  filter(str_detect(South3,"MUC 9")) %>%
+  select(South3)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South4,"MUC 0")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 1")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 2")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 3")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 4")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 5")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 6")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 7")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 8")) %>%
+  select(South4)
+south.sep %>%
+  filter(str_detect(South4,"MUC 9")) %>%
+  select(South4)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South5,"MUC 0")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 1")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 2")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 3")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 4")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 5")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 6")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 7")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 8")) %>%
+  select(South5)
+south.sep %>%
+  filter(str_detect(South5,"MUC 9")) %>%
+  select(South5)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South6,"MUC 0")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 1")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 2")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 3")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 4")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 5")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 6")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 7")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 8")) %>%
+  select(South6)
+south.sep %>%
+  filter(str_detect(South6,"MUC 9")) %>%
+  select(South6)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South7,"MUC 0")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 1")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 2")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 3")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 4")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 5")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 6")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 7")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 8")) %>%
+  select(South7)
+south.sep %>%
+  filter(str_detect(South7,"MUC 9")) %>%
+  select(South7)
+```
+
+```{r}
+south.sep %>%
+  filter(str_detect(South8,"MUC 0")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 1")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 2")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 3")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 4")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 5")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 6")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 7")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 8")) %>%
+  select(South8)
+south.sep %>%
+  filter(str_detect(South8,"MUC 9")) %>%
+  select(South8)
+```
+
+```{r}
+south.sepcl <- south.sep %>%
+  select(-landcoversLandCoverId,-landcoversDataSource,-landcoversMeasuredAt,-siteName,-landcoversMeasurementLatitude,-landcoversMeasurementLongitude,-elevation,-landcoversMeasurementElevation,-landcoversMucCode,-landcoversMucDetails,-landcoversMucDescription,-landcoversDownwardExtraData,-landcoversDownwardPhotoUrl,-landcoversDryGround,-landcoversEastExtraData,-landcoversFieldNotes,-landcoversLeavesOnTrees,-landcoversMuddy,-landcoversNorthExtraData,-landcoversRainingSnowing,-landcoversSnowIce,-landcoversSouthExtraData,-landcoversStandingWater,-landcoversUpwardExtraData,-landcoversUpwardPhotoUrl,-landcoversWestExtraData)
+onlysouth <- south.sepcl %>%
+  select(South1,South2,South3,South4,South5,South6,South7,South8,landcoversSouthPhotoUrl)
+```
+
+```{r}
+
+onlysouth<-onlysouth %>%
+  pivot_longer(-landcoversSouthPhotoUrl,names_to = "South", values_to = "classification_detail")
+
+onlysouth<-onlysouth%>%
+  group_by(landcoversSouthPhotoUrl)
+```
+
+```{r}
+
+onlysouth<-onlysouth %>%
+  mutate(classification_detail=str_replace_all(classification_detail," ",""))
+```
+
+```{r}
+
+onlysouth<-onlysouth %>%
+   mutate(percentage = str_extract_all(classification_detail,"[0-9]+%")) %>%
+  group_by(landcoversSouthPhotoUrl)%>%
+    mutate(percentage=str_replace_all(percentage,"%",""))%>%
+  group_by(landcoversSouthPhotoUrl)
+
+onlysouth$percentage<-as.numeric(onlysouth$percentage)
+class(onlysouth$percentage)
+```
+
+```{r}
+south_desc<-onlysouth %>%
+            group_by(landcoversSouthPhotoUrl) %>%
+    arrange(desc(percentage))%>%
+  slice(1)
+```
+
+```{r}
+
+south_desc<-south_desc %>%
+   mutate(muc_code = str_extract_all(classification_detail,"MUC[0-9]")) %>%
+  group_by(landcoversSouthPhotoUrl)%>%
+      mutate(muc_code=str_replace_all(muc_code,"MUC",""))%>%
+  group_by(landcoversSouthPhotoUrl)
+
+south_desc$muc_code<-as.character(south_desc$muc_code)
+class(south_desc$muc_code)
+```
+
+
+```{r}
+library(tidyverse)
+library(keras)
+library(tensorflow)
+library(reticulate)
+library(urltools)
+```
+
+
+
+```{r message=FALSE}
+library(rvest)
+library(downloader)
+library(stringr)
+library(dplyr)
+getwd()
+setwd("~/AU/DATA-793/project/land_cover")
+
+east_desc<-east_desc[-369, ]
+east_desc<-east_desc[-369, ]
+dir.create("~/AU/DATA-793/project/land_cover/pictures") 
+for(i in 1:length(east_desc$landcoversEastPhotoUrl)) 
+{
+ download(east_desc$landcoversEastPhotoUrl[i],
+          paste("~/AU/DATA-793/project/land_cover/pictures",i,".jpg",sep = ""), mode = "wb")
+}  
+
+
+```
+
